@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Project Management Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Project Management Dashboard</h1>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Status</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody id="taskList"> 
+</tbody>
+</table>
+<h2>Add New Task</h2>
+<input type="text" id="taskInput" placeholder="Enter task name">
+<button onclick="addTask()">Add Task</button>
+<script>
+let tasks = [];
+function addTask()
+{
+const taskInput = document.getElementById('taskInput');
+const taskName = taskInput.value.trim();
+if (taskName !== '')
+ {
+ const newTask =
+{
+name: taskName,
+status: 'Pending'
+};
+tasks.push(newTask);
+displayTasks();
+taskInput.value = '';
+}
+}
+function updateStatus(index, newStatus)
+{
+ tasks[index].status = newStatus;
+displayTasks();
+}
+function displayTasks()
+{
+const taskList = document.getElementById('taskList');
+taskList.innerHTML = '';
+for (let i = 0; i < tasks.length; i++)
+{
+ const task = tasks[i];
+const row = document.createElement('tr');
+const nameCell = document.createElement('td'); 
+nameCell.textContent = task.name;
+row.appendChild(nameCell);
+const statusCell = document.createElement('td');
+statusCell.textContent = task.status;
+row.appendChild(statusCell);
+const actionsCell = document.createElement('td');
+const pendingBtn = document.createElement('button');
+pendingBtn.textContent = 'Pending';
+pendingBtn.className = 'btn pending';
+pendingBtn.onclick = function()
+{
+updateStatus(i, 'Pending');
+};
+actionsCell.appendChild(pendingBtn);
+const inProgressBtn = document.createElement('button');
+inProgressBtn.textContent = 'In Progress';
+inProgressBtn.className = 'btn in-progress';
+inProgressBtn.onclick = function()
+{
+updateStatus(i, 'In Progress');
+};
+actionsCell.appendChild(inProgressBtn);
+const completedBtn = document.createElement('button');
+completedBtn.textContent = 'Completed';
+completedBtn.className = 'btn completed';
+completedBtn.onclick = function()
+{
+updateStatus(i, 'Completed');
+};
+actionsCell.appendChild(completedBtn);
+row.appendChild(actionsCell);
+taskList.appendChild(row);
+}
+}
+</script>
+</body>
+</html>

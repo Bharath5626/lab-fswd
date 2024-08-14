@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
+<title>Leave Form</title>
+<script>
+function showAlert()
+{
+let leaves = document.getElementById("leaves").value;
+let total_no_leave = 6;
+let remaining_leaves = total_no_leave-leaves
+alert("Form submitted\nRemaining Leave : "+remaining_leaves);
+}
+</script> 
+</head>
+<body>
+<div class="container">
+<div class="form">
+<h1>Leave Form</h1>
+<form action="" onsubmit="showAlert()">
+<input type="text" name="name" id="name" placeholder="Name">
+<br> <input type="number" name="leaves" id="leaves" placeholder="Number of leaves">
+<br> <input type="text" name="reason" id="reason" placeholder="Reason">
+<br> <input type="text" name="CorM" id="CorM" placeholder="Casual or Medical
+Leave">
+<br> <label for="">Attach proof:</label>
+<input type="file" name="proof" id="proof">
+<br> <button type="submit">Submit</button>
+</form>
+</div>
+ </div>
+</body>
+</html> 
